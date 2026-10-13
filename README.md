@@ -1,165 +1,165 @@
-# 🏠 House Price Prediction
+# 📄 DocuSense — AI-Powered PDF Document Classifier
 
 <p align="center">
-  <b>A Machine Learning Regression Application for Predicting House Prices</b>
+  <b>An OCR-Powered Machine Learning Application for PDF Document Classification</b>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas"/>
   <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Scikit-learn"/>
-  <img src="https://img.shields.io/badge/Machine%20Learning-Regression-8A2BE2?style=for-the-badge" alt="Machine Learning"/>
+  <img src="https://img.shields.io/badge/OCR-Tesseract-2E8B57?style=for-the-badge" alt="OCR"/>
+  <img src="https://img.shields.io/badge/PyMuPDF-PDF%20Processing-6A5ACD?style=for-the-badge" alt="PyMuPDF"/>
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit"/>
 </p>
 
 ---
 
 ## 🚀 Project Overview
 
-The **House Price Prediction** project uses machine learning regression algorithms to estimate house prices based on property features such as area, bedrooms, bathrooms, parking, and furnishing status.
-
-The project uses the Housing Prices dataset from Kaggle and compares multiple regression algorithms to identify a model that predicts prices effectively.
-
-The objective is to understand the complete machine learning workflow, including data preprocessing, exploratory data analysis, model training, evaluation, and price prediction.
-
 ## 🌐 Live Demo
 
-🚀 **Try the application:** Add your deployed application URL here.
+🚀 **Try the application:** [DocuSense — PDF Document Classifier](https://docusense-ai-classifier.streamlit.app/)
 
-💻 **Source Code:** Add your GitHub repository URL here.
+💻 **Source Code:** [View on GitHub](https://github.com/tanush090/DocuSense-AI-Classifier)
 
-*The live demo will be available after deploying the project.*
+Upload a PDF or supported image to extract its text and predict whether the document is a **Bill, Invoice, or Receipt**.
+
+**DocuSense** is an AI-powered document classification application that combines Optical Character Recognition (OCR), PDF text extraction, and machine learning to automate document categorization.
+
+The application uses **PyMuPDF** to extract text from digital PDFs and **Tesseract OCR** to recognize text from scanned documents when necessary. The extracted text is processed using **TF-IDF Vectorization** and classified using a trained **Logistic Regression** model.
+
+The application is built with Streamlit and displays the predicted document category, prediction confidence, and extracted text.
 
 ## ✨ Features
 
-- 🏠 Predict house prices using property characteristics.
-- 📊 Explore housing data through exploratory data analysis.
-- 🧹 Handle missing values and preprocess categorical features.
-- 🔢 Convert categorical variables into numerical features using One-Hot Encoding.
-- 🤖 Train and compare multiple regression algorithms.
-- 📈 Evaluate predictions using MAE, RMSE, and R² score.
-- 💾 Save the trained machine learning pipeline.
-- 🔮 Predict prices for new property inputs.
+- 📄 Upload PDF documents and supported images for classification.
+- 🔍 Extract text from digital PDFs using PyMuPDF.
+- 🖼️ Recognize text from scanned documents using Tesseract OCR.
+- 🧠 Convert extracted text into numerical features using TF-IDF.
+- 🤖 Classify documents into Bill, Invoice, and Receipt categories.
+- 📊 Display prediction confidence scores.
+- 📝 Preview and download extracted text.
+- 📦 Use a saved machine learning model without retraining during normal predictions.
+- 🌐 Interactive Streamlit web interface.
+- 🔄 Separate scripts for model training, evaluation, and prediction.
 
 ## 🏗️ System Architecture
 
 ```mermaid
 flowchart TD
-    A["User / Property Features"] --> B["Input Preprocessing"]
-    B --> C["Trained Regression Pipeline"]
-    C --> D["Predicted House Price"]
-    D --> E["Display Prediction"]
+    A["User Uploads PDF or Image"] --> B["Streamlit Interface"]
+    B --> C{"Text-Based PDF?"}
+    C -->|Yes| D["PyMuPDF Text Extraction"]
+    C -->|No| E["Tesseract OCR"]
+    D --> F{"Sufficient Text Extracted?"}
+    F -->|Yes| G["Extracted Text"]
+    F -->|No| E
+    E --> G
+    G --> H["Text Preprocessing"]
+    H --> I["Saved ML Pipeline"]
+    I --> J["TF-IDF Vectorizer"]
+    J --> K["Logistic Regression"]
+    K --> L["Predicted Document Category"]
+    K --> M["Prediction Confidence"]
+    L --> N["Display Results"]
+    M --> N
+    G --> N
 ```
 
 ## 🔄 Machine Learning Workflow
 
 ```mermaid
 flowchart TD
-    A["Kaggle Housing Dataset"] --> B["Load Dataset"]
-    B --> C["Data Cleaning"]
-    C --> D["Exploratory Data Analysis"]
-    D --> E["Feature and Target Separation"]
-    E --> F["Train-Test Split"]
-    F --> G["Feature Preprocessing"]
-    G --> H["Train Regression Models"]
-    H --> I["Evaluate Model Performance"]
-    I --> J["Compare Models"]
-    J --> K["Save Selected Model"]
-    K --> L["Predict House Prices"]
+    A["Synthetic Document Dataset"] --> B["Data Preparation"]
+    B --> C["Text and Label Preparation"]
+    C --> D["Train-Test Split"]
+    D --> E["TF-IDF Vectorization"]
+    E --> F["Logistic Regression Training"]
+    F --> G["Model Evaluation"]
+    G --> H["Save document_classifier.pkl"]
+    H --> I["Streamlit Application"]
+    I --> J["Extract Text from Uploaded Document"]
+    J --> K["Predict Bill, Invoice, or Receipt"]
+    K --> L["Display Prediction and Confidence"]
 ```
 
 ## 🧠 Model Details
 
 | Component | Description |
 |---|---|
-| Problem Type | Supervised regression |
-| Input | Housing and property features |
-| Target Variable | `price` |
-| Linear Model | Linear Regression |
-| Tree-Based Model | Decision Tree Regressor |
-| Ensemble Model | Random Forest Regressor |
-| Feature Encoding | One-Hot Encoding |
-| Missing Value Handling | SimpleImputer |
+| Problem Type | Multiclass text classification |
+| Input | Extracted text from PDFs and supported images |
+| Output Classes | Bill, Invoice, Receipt |
+| PDF Processing | PyMuPDF |
+| OCR Engine | Tesseract OCR |
+| Feature Extraction | TF-IDF Vectorizer |
+| Classification Algorithm | Logistic Regression |
 | Machine Learning Library | Scikit-learn |
-| Evaluation Metrics | MAE, RMSE, R² |
 | Model Serialization | Joblib |
+| Saved Model | `document_classifier.pkl` |
+| Web Framework | Streamlit |
 
-### Models Used
-
-**1. Linear Regression**
-
-Provides a baseline model by learning a linear relationship between property features and house prices.
-
-**2. Decision Tree Regressor**
-
-Learns decision rules from the dataset and can capture nonlinear relationships between property features and prices.
-
-**3. Random Forest Regressor**
-
-Combines multiple decision trees to improve prediction stability and capture more complex patterns.
-
-The models are evaluated on the same test dataset. The final model should be selected based on actual evaluation results rather than assuming that one algorithm will always perform best.
+The classification model learns patterns in document text using TF-IDF features and Logistic Regression. OCR and PDF extraction provide the text that the model uses for classification.
 
 ## 📊 Dataset
 
-This project uses the **Housing Prices Dataset** from Kaggle.
+This project uses a synthetic dataset named:
 
-🔗 **Dataset Link:** [Housing Prices Dataset — Kaggle](https://www.kaggle.com/datasets/yasserh/housing-prices-dataset/data)
+`synthetic_indian_bill_invoice_receipt_3000.csv`
 
-The dataset contains housing records with features describing property size, rooms, amenities, and furnishing status.
+The dataset contains **3,000 synthetic records**, with 1,000 records per category:
+
+- Bill
+- Invoice
+- Receipt
 
 ### Dataset Preparation
 
-- Loaded the CSV dataset using Pandas.
-- Inspected column names, data types, and statistical summaries.
-- Checked missing values and duplicate records.
-- Explored the distribution of house prices.
-- Separated input features from the target variable.
-- Split the data into training and testing sets.
-- Prepared numerical and categorical features for model training.
+- Prepared synthetic document text samples for the three categories.
+- Organized records using their corresponding document labels.
+- Converted text into numerical features using TF-IDF.
+- Trained a Logistic Regression classifier.
+- Evaluated the model using held-out synthetic data.
 
-**Target variable:** `price`
+**Note:** The dataset is synthetic and does not fully represent the variety of real-world documents. Performance on actual bills, invoices, and receipts may differ.
 
-**Note:** The model estimates prices based on patterns in this dataset. Its predictions should not be treated as guaranteed market valuations.
+## 💡 Example Predictions
 
-## 💡 Example Prediction
+| Document Text | Expected Category |
+|---|---|
+| Electricity consumption charges and payment due date | `Bill` |
+| Invoice number, vendor details, and amount payable | `Invoice` |
+| Payment received, transaction details, and total paid | `Receipt` |
 
-A user provides property details such as:
-
-- Area
-- Number of bedrooms
-- Number of bathrooms
-- Number of floors
-- Main-road access
-- Guestroom availability
-- Basement and air-conditioning availability
-- Parking capacity
-- Furnishing status
-
-The trained model processes these features and returns an estimated house price.
-
-*The predicted amount depends on the trained model and the property inputs. No example price is claimed as an actual model result.*
+*These examples are illustrative. Actual predictions depend on the extracted text and the trained model.*
 
 ## 🛠️ Tech Stack
 
 - **Language:** Python
-- **Data Processing:** Pandas, NumPy
-- **Data Visualization:** Matplotlib, Seaborn
+- **Data Processing:** Pandas
 - **Machine Learning:** Scikit-learn
-- **Regression Algorithms:** Linear Regression, Decision Tree, Random Forest
-- **Feature Engineering:** One-Hot Encoding
-- **Missing Value Handling:** SimpleImputer
+- **Text Feature Extraction:** TF-IDF Vectorization
+- **Classification Algorithm:** Logistic Regression
+- **PDF Processing:** PyMuPDF
+- **Optical Character Recognition:** Tesseract OCR
+- **OCR Integration:** Pytesseract
 - **Model Serialization:** Joblib
-- **Development Environment:** Google Colab
+- **Image Processing:** Pillow
+- **Web Application:** Streamlit
+- **Dataset:** Synthetic Indian Bill, Invoice, and Receipt Records
 
 ## 📁 Project Structure
 
 ```text
-house-price-prediction/
+DocuSense/
 │
-├── Housing.csv
-├── house_price_model.pkl
+├── app.py
+├── document_classifier.pkl
+├── synthetic_indian_bill_invoice_receipt_3000.csv
 ├── requirements.txt
+├── packages.txt
 ├── README.md
+├── .gitignore
 │
 └── src/
     ├── train.py
@@ -167,68 +167,142 @@ house-price-prediction/
     └── predict.py
 ```
 
-*This is the intended structure for organizing the project. Include only files that you have actually created.*
+**File descriptions:**
+
+- `app.py` — Streamlit application for uploading, processing, and classifying documents.
+- `document_classifier.pkl` — Saved machine learning model or pipeline.
+- `synthetic_indian_bill_invoice_receipt_3000.csv` — Synthetic dataset used for model development.
+- `requirements.txt` — Python dependencies.
+- `packages.txt` — System packages required for deployment, including Tesseract OCR.
+- `src/train.py` — Model training script.
+- `src/evaluate.py` — Model evaluation script.
+- `src/predict.py` — Prediction utility.
+
+*Adjust the structure to match the files actually present in your GitHub repository.*
 
 ## ⚙️ Installation and Usage
 
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd house-price-prediction
+git clone https://github.com/tanush090/DocuSense-AI-Classifier.git
+cd DocuSense-AI-Classifier
 ```
 
-Replace `YOUR_GITHUB_REPOSITORY_URL` with your actual repository URL.
-
-### 2. Install dependencies
+### 2. Install Python dependencies
 
 ```bash
-python -m pip install pandas numpy matplotlib seaborn scikit-learn joblib
+python -m pip install -r requirements.txt
 ```
 
-### 3. Run the notebook
+### 3. Install Tesseract OCR
 
-Open the notebook in Google Colab, upload `Housing.csv`, and execute the cells in order to preprocess the dataset, train the models, and compare their performance.
+For macOS with Homebrew:
 
-## 🔁 Train the Models
+```bash
+brew install tesseract
+```
 
-The training workflow includes:
+For Ubuntu or Debian:
 
-1. Loading and cleaning the dataset.
-2. Separating the features and target.
-3. Creating training and testing sets.
-4. Preprocessing numerical and categorical columns.
-5. Training Linear Regression, Decision Tree, and Random Forest.
-6. Comparing model evaluation metrics.
+```bash
+sudo apt update
+sudo apt install tesseract-ocr
+```
 
-The selected model can then be saved for reuse.
+On Windows, install the Tesseract OCR engine and ensure its executable is available to Pytesseract.
 
-## 📈 Model Evaluation
+### 4. Run the Streamlit application
 
-The models are compared using the following metrics:
+Ensure `document_classifier.pkl` is present at the location expected by `app.py`.
 
-| Metric | Purpose | Preferred Result |
-|---|---|---|
-| MAE | Average absolute prediction error | Lower |
-| RMSE | Penalizes larger prediction errors | Lower |
-| R² Score | Measures explained variation in prices | Generally higher |
+```bash
+streamlit run app.py
+```
 
-The best model will be determined from the actual evaluation results obtained during training.
+Open the local URL displayed in your terminal to interact with the application.
+
+## 🔁 Train the Model
+
+To retrain the classifier, ensure the synthetic dataset is available and the training script uses the correct dataset path.
+
+Run the following command from the repository root:
+
+```bash
+python src/train.py
+```
+
+The training script should prepare the text data, train the TF-IDF and Logistic Regression pipeline, evaluate the results, and save the trained model.
+
+*The exact output path depends on the implementation of `src/train.py`.*
+
+## 📈 Evaluate the Model
+
+To evaluate the trained classifier, run:
+
+```bash
+python src/evaluate.py
+```
+
+The evaluation script can report classification metrics such as:
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Confusion matrix
+
+These metrics help assess how well the classifier distinguishes the three document categories.
+
+### Reported Results
+
+The model achieved **100% accuracy on a held-out set of 600 synthetic records** during the reported evaluation.
+
+This result applies to the synthetic test set only. It should not be interpreted as guaranteed accuracy on real-world documents. Evaluation on independent, real-world documents is necessary to measure practical performance.
+
+## 🔍 Predict a Document Category
+
+If `src/predict.py` supports interactive predictions, run:
+
+```bash
+python src/predict.py
+```
+
+Provide the text input requested by the script to obtain a predicted document category.
+
+For PDF and image uploads, use the Streamlit application to run the complete extraction and classification workflow.
+
+## 🌐 Deployment
+
+The application can be deployed using **Streamlit Community Cloud**.
+
+1. Push the required project files to GitHub.
+2. Open [Streamlit Community Cloud](https://share.streamlit.io/).
+3. Sign in using your GitHub account.
+4. Create a new application.
+5. Select the repository and deployment branch.
+6. Set the main file path to `app.py`.
+7. Configure the required Python dependencies in `requirements.txt`.
+8. Configure `packages.txt` to install the Tesseract OCR system package.
+9. Deploy the application.
+
+The deployment requires the application code, saved model, Python dependencies, and OCR system dependency. The synthetic training dataset is only required at runtime if the application or its supporting scripts explicitly load it.
 
 ## 🎯 Project Objective
 
-The objective is to demonstrate how supervised machine learning can be applied to a regression problem, using housing data to learn relationships between property characteristics and prices.
+The objective of DocuSense is to demonstrate how PDF processing, OCR, Natural Language Processing techniques, and machine learning can work together to automate document classification.
 
-The project provides practical experience in data analysis, feature engineering, regression algorithms, model evaluation, and deployment preparation.
+The project explores a practical document-processing workflow that can help organize digital records and reduce manual categorization.
 
 ## 🔮 Future Improvements
 
-- Build an interactive Streamlit prediction interface.
-- Tune model hyperparameters using cross-validation.
-- Add feature importance analysis.
-- Test the model on additional housing datasets.
-- Deploy the application online.
-- Improve generalization to properties outside the training dataset.
+- Expand the dataset with diverse real-world documents.
+- Improve OCR performance on low-resolution and rotated scans.
+- Add batch document processing.
+- Extract structured information such as invoice numbers, dates, vendors, and totals.
+- Support additional document categories.
+- Evaluate more advanced text and document classification models.
+- Add automated testing and real-world performance evaluation.
 
 ## 👨‍💻 Author
 
