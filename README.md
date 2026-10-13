@@ -1,11 +1,11 @@
 # DocuSense – Smart PDF Document Classifier
 
 
-[![Open Live App](https://img.shields.io/badge/🚀_Open-Live_App-FF4B4B?style=for-the-badge)](https://classidoc.streamlit.app)
+[![Open Live App](https://img.shields.io/badge/🚀_Open-Live_App-FF4B4B?style=for-the-badge)](https://docusense-ai-classifier.streamlit.app)
 
 **DocuSense** is an AI/ML-powered application that classifies documents into Bills, Invoices, and Receipts.
 
-🌐 **Live Demo:** https://classidoc.streamlit.app
+🌐 **Live Demo:** https://docusense-ai-classifier.streamlit.app
 
 ## 📌 Project Overview
 DocuSense is a machine learning project that classifies documents into three categories: **Bill, Invoice, and Receipt**. It extracts text from PDF documents and scanned files and uses a trained machine learning model to predict the document category.
